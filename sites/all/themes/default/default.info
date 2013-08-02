@@ -1,0 +1,9 @@
+name = Default
+description = 默认前台主题.
+package = Core
+version = VERSION
+core = 7.x
+stylesheets[all][] = css/style.css
+stylesheets[all][] = css/newsquery.css
+
+scripts[] = js/mm_menu.js

@@ -1,0 +1,58 @@
+<?php
+
+/**
+ * Implements hook_theme().
+ */
+function cnenterprise_common_theme($existing, $type, $theme, $path) {
+  $path = drupal_get_path('module', 'cnenterprise_common');
+  return array(
+    'cnenterprise_common_page_header' => array(
+      'variables' => array(),
+      'template' => 'cnenterprise-page-header',
+      'file' => 'theme.inc',
+      'path' => $path . '/theme',
+    ),
+    
+    'cnenterprise_common_page_footer' => array(
+      'variables' => array(),
+      'template' => 'cnenterprise-page-footer',
+      'file' => 'theme.inc',
+      'path' => $path . '/theme',
+    ),
+  );
+}
+
+/**
+ * 按指定长度截取字符串.
+ * 
+ * @param $string 需要截取的字符
+ * @param $length 截取长度
+ * @param $suffix 后缀
+ * 
+ */
+function cnenterprise_common_cutstr($string, $length, $suffix = '...') {
+  if (drupal_strlen($string) > $length) {
+    $string = drupal_substr($string, 0, $length) . $suffix;
+  }
+  return $string;
+}
+
+/**
+ * Implements hook_custom_theme().
+ */
+function cnenterprise_common_custom_theme() {
+  if (arg(0) == 'user') {
+    return 'seven';
+  }
+}
+
+/**
+ * Implements hook_js_alter().
+ * 
+ */
+function cnenterprise_common_js_alter(&$js) {
+  global $theme_key;
+  if ($theme_key == 'default') {
+    //$js['misc/jquery.js']['data'] = drupal_get_path('theme', 'default') . '/js/jquery-1.8.2.min.js';    
+  }
+}
